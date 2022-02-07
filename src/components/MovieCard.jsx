@@ -58,7 +58,7 @@ export default function MovieCard({
   //   getVideo(getTrailer);
   // }, []);
 
-  const handleId = () => {
+  const handleTrailer = () => {
     getVideo(getTrailer);
   };
 
@@ -77,7 +77,7 @@ export default function MovieCard({
           <h5>
             <a
               className="trailer"
-              onClick={handleId}
+              onClick={handleTrailer}
               target="_blank"
               rel="noreferrer"
             >
