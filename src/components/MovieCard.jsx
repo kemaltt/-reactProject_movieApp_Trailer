@@ -35,7 +35,7 @@ export default function MovieCard({
       setTrailer(key);
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 700);
     });
   };
   if (loading) {
