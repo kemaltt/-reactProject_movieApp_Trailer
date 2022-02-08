@@ -28,15 +28,21 @@ export default function MovieCard({
 
   const getVideo = async (API) => {
     setLoading(true);
-    await axios.get(API).then((res) => {
-      const [trailer] = res.data.results;
-      const key = trailer.key;
-      // console.log(key);
-      setTrailer(key);
-      setTimeout(() => {
+    await axios
+      .get(API)
+      .then((res) => {
+        const [trailer] = res.data.results;
+        const key = trailer.key;
+        // console.log(key);
+        setTrailer(key);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err);
         setLoading(false);
-      }, 700);
-    });
+      });
   };
   if (loading) {
     trailerContent = <Loading />;
