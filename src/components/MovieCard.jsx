@@ -24,6 +24,7 @@ export default function MovieCard({
   const youtubeUrl = "https://www.youtube.com/embed/";
   const [trailer, setTrailer] = useState("");
   const [loading, setLoading] = useState(false);
+  const [iframeClass, setIframeClass] = useState("");
   let trailerContent;
 
   const getVideo = async (API) => {
@@ -44,6 +45,16 @@ export default function MovieCard({
         setLoading(false);
       });
   };
+
+  // useEffect(() => {
+  //   getVideo(getTrailer);
+  // }, []);
+
+  const handleTrailer = () => {
+    getVideo(getTrailer);
+    // setIframeClass('display: "block"');
+  };
+
   if (loading) {
     trailerContent = <Loading />;
   } else {
@@ -51,6 +62,7 @@ export default function MovieCard({
       <>
         <iframe
           style={trailer ? { display: "block" } : { display: "none" }}
+          // style={{ iframeClass }}
           src={youtubeUrl + trailer}
           title="YouTube video player"
           frameborder="0"
@@ -60,13 +72,6 @@ export default function MovieCard({
       </>
     );
   }
-  // useEffect(() => {
-  //   getVideo(getTrailer);
-  // }, []);
-
-  const handleTrailer = () => {
-    getVideo(getTrailer);
-  };
 
   return (
     <React.Fragment>

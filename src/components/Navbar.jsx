@@ -1,8 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import AuthenticationContext from "../contexts/AuthenticationContext";
+import { useContext } from "react";
 
 export default function Navbar() {
   const navigate = useNavigate();
+
+  const { credentials, handleLogOut, login } = useContext(
+    AuthenticationContext
+  );
 
   return (
     <React.Fragment>
@@ -12,22 +18,36 @@ export default function Navbar() {
         </a>
 
         <div className="buttons">
-          <form className="form my-2 my-lg-0">
-            <button
-              onClick={() => navigate("/login")}
-              className="btn btn-outline-light my-2 mx-1"
-              type="button"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => navigate("/register")}
-              className="btn btn-outline-light "
-              type="button"
-            >
-              Register
-            </button>
-          </form>
+          {login ? (
+            <div className="d-flex">
+              <h3 className="text-capitalize text-light">
+                {credentials.firstName + " " + credentials.lastName}
+              </h3>
+              <button
+                onClick={handleLogOut}
+                className="btn btn-outline-light mx-2"
+              >
+                Log Out
+              </button>
+            </div>
+          ) : (
+            <form className="form my-2 my-lg-0">
+              <button
+                onClick={() => navigate("/login")}
+                className="btn btn-outline-light my-2 mx-1"
+                type="button"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => navigate("/register")}
+                className="btn btn-outline-light "
+                type="button"
+              >
+                Register
+              </button>
+            </form>
+          )}
         </div>
       </nav>
     </React.Fragment>

@@ -34,10 +34,6 @@ export default function Main() {
       });
   };
 
-  useEffect(() => {
-    getMovies(UNFILTERED);
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     getMovies(FILTERED + searchTerm);
@@ -65,6 +61,10 @@ export default function Main() {
       </div>
     );
   }
+
+  useEffect(() => {
+    getMovies(UNFILTERED);
+  }, []);
 
   return (
     <React.Fragment>

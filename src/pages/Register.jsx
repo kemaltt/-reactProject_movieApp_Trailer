@@ -1,23 +1,32 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthenticationContext from "../contexts/AuthenticationContext";
 
 export default function Register() {
+  const { credentials, handleCredentials } = useContext(AuthenticationContext);
+
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState();
-  const [lastName, setlastName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [alertClass, setAlertClass] = useState("alert alert-danger d-none");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [alertClass, setAlertClass] = useState("alert alert-success d-none");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName && lastName && email && password) {
-      navigate("/");
-    } else {
-      setAlertClass("alert alert-danger");
-    }
+    handleCredentials(firstName, lastName, email, password);
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
+    setAlertClass("alert alert-success");
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
+
+  // console.log(credentials);
 
   return (
     <React.Fragment>
@@ -31,12 +40,12 @@ export default function Register() {
         </div>
         <div className="register-form">
           <div className={alertClass} role="alert">
-            Please fill in the blanks!!!
+            You have registered successfully!!!
           </div>
           <h1 className="form-title display-3">Register</h1>
-          <form onSubmit={handleSubmit} id="register">
+          <form onSubmit={(e) => handleSubmit(e)} id="register">
             <div className="mb-3">
-              <label for="first-name" className="form-label display-4">
+              <label htmlFor="first-name" className="form-label display-4">
                 First Name
               </label>
               <input
@@ -45,10 +54,12 @@ export default function Register() {
                 id="first-name"
                 placeholder="Enter your first name..."
                 onChange={(e) => setFirstName(e.target.value)}
+                value={firstName}
+                required
               />
             </div>
             <div className="mb-3">
-              <label for="last-name" className="form-label display-4">
+              <label htmlFor="last-name" className="form-label display-4">
                 Last Name
               </label>
               <input
@@ -56,11 +67,13 @@ export default function Register() {
                 className="form-control"
                 id="last-name"
                 placeholder="Enter your last name..."
-                onChange={(e) => setlastName(e.target.value)}
+                onChange={(e) => setLastName(e.target.value)}
+                value={lastName}
+                required
               />
             </div>
             <div className="mb-3">
-              <label for="email" className="form-label display-4">
+              <label htmlFor="email" className="form-label display-4">
                 Email
               </label>
               <input
@@ -69,10 +82,12 @@ export default function Register() {
                 id="email"
                 placeholder="Enter your email address..."
                 onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                required
               />
             </div>
             <div className="mb-3">
-              <label for="password" className="form-label display-4">
+              <label htmlFor="password" className="form-label display-4">
                 Password
               </label>
               <input
@@ -81,6 +96,8 @@ export default function Register() {
                 id="password"
                 placeholder="Enter your password..."
                 onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                required
               />
             </div>
             <input

@@ -5,20 +5,22 @@ import Navbar from "./components/Navbar";
 import Main from "./pages/Main";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { AuthContextProvider } from "./contexts/AuthenticationContext";
+import React from "react";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <React.Fragment>
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+        <AuthContextProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </AuthContextProvider>
       </Router>
-    </div>
+    </React.Fragment>
   );
 }
-
-export default App;
