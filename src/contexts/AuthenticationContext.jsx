@@ -41,7 +41,7 @@ export const AuthContextProvider = (props) => {
       password: "",
     });
     setLogin(false);
-    navigate("/login");
+    // navigate("/login");
   };
 
   return (
