@@ -14,7 +14,7 @@ export default function Navbar() {
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-light  d-flex d-flex justify-content-between">
         <a className="navbar-brand text-white" href="/">
-          React Movie App
+          React Movies
         </a>
 
         <div className="buttons">
