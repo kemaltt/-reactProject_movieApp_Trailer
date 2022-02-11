@@ -1,11 +1,10 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthenticationContext from "../contexts/AuthenticationContext";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../auth/firebase-config";
 
 export default function Register() {
-  const { credentials, handleCredentials } = useContext(AuthenticationContext);
-
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -13,20 +12,19 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [alertClass, setAlertClass] = useState("alert alert-success d-none");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleCredentials(firstName, lastName, email, password);
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPassword("");
-    setAlertClass("alert alert-success");
-    setTimeout(() => {
+    let displayName = firstName + " " + lastName;
+    try {
+      let user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(user);
+      await updateProfile(auth.currentUser, { displayName: displayName });
+      console.log(auth.currentUser);
       navigate("/login");
-    }, 1000);
+    } catch (err) {
+      alert(err);
+    }
   };
-
-  // console.log(credentials);
 
   return (
     <React.Fragment>

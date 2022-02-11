@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Loading from "./Loading";
+import AuthenticationContext from "../contexts/AuthenticationContext";
 
 export default function MovieCard({
   title,
@@ -27,6 +28,8 @@ export default function MovieCard({
   const [iframeClass, setIframeClass] = useState("");
   let trailerContent;
 
+  const { currentUser } = useContext(AuthenticationContext);
+
   const getVideo = async (API) => {
     setLoading(true);
     await axios
@@ -51,7 +54,10 @@ export default function MovieCard({
   // }, []);
 
   const handleTrailer = () => {
-    getVideo(getTrailer);
+    currentUser
+      ? getVideo(getTrailer)
+      : alert("Please log in to make a search");
+
     // setIframeClass('display: "block"');
   };
 

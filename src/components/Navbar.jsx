@@ -2,13 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import AuthenticationContext from "../contexts/AuthenticationContext";
 import { useContext } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../auth/firebase-config";
 
 export default function Navbar() {
   const navigate = useNavigate();
 
-  const { credentials, handleLogOut, login } = useContext(
-    AuthenticationContext
-  );
+  const { currentUser } = useContext(AuthenticationContext);
+
+  const handleLogOut = () => {
+    signOut(auth);
+  };
 
   return (
     <React.Fragment>
@@ -18,10 +22,10 @@ export default function Navbar() {
         </a>
 
         <div className="buttons">
-          {login ? (
+          {currentUser ? (
             <div className="d-flex">
               <h3 className="text-capitalize text-light">
-                {credentials.firstName + " " + credentials.lastName}
+                {currentUser.displayName}
               </h3>
               <button
                 onClick={handleLogOut}
