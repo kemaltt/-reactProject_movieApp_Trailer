@@ -25,7 +25,7 @@ export default function Main() {
         setMovies(res.data.results);
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 500);
         if (res.data.results.length == 0) {
           setNotFound(true);
         }

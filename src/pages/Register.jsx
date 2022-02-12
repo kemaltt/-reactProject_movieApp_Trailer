@@ -17,9 +17,9 @@ export default function Register() {
     let displayName = firstName + " " + lastName;
     try {
       let user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
+      // console.log(user);
       await updateProfile(auth.currentUser, { displayName: displayName });
-      console.log(auth.currentUser);
+      // console.log(auth.currentUser);
       navigate("/login");
     } catch (err) {
       alert(err);

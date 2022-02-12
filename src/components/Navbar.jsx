@@ -1,22 +1,31 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AuthenticationContext from "../contexts/AuthenticationContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 
 export default function Navbar() {
   const navigate = useNavigate();
-
+  let navTheme = "nav-1";
   const { currentUser } = useContext(AuthenticationContext);
 
   const handleLogOut = () => {
     signOut(auth);
   };
 
+  if (currentUser) {
+    navTheme = "nav-2";
+  } else {
+    navTheme = "nav-1";
+  }
+
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light  d-flex d-flex justify-content-between">
+      <nav
+        className="navbar navbar-expand-lg navbar-light  d-flex d-flex justify-content-between"
+        id={navTheme}
+      >
         <a className="navbar-brand text-white" href="/">
           React Movies
         </a>
@@ -29,7 +38,7 @@ export default function Navbar() {
               </h3>
               <button
                 onClick={handleLogOut}
-                className="btn btn-outline-light mx-2"
+                className="btn btn-outline-warning mx-2"
               >
                 Log Out
               </button>
