@@ -52,7 +52,7 @@ export default function Register() {
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control "
                 id="first-name"
                 placeholder="Enter your first name..."
                 onChange={(e) => setFirstName(e.target.value)}

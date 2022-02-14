@@ -30,7 +30,7 @@ export default function Navbar() {
         className="navbar navbar-expand-lg navbar-light  d-flex d-flex justify-content-between"
         id={navTheme}
       >
-        <a className={brandColor} href="/">
+        <a className={brandColor} href="/reactProject_movieApp_Trailer/">
           React Movies
         </a>
 

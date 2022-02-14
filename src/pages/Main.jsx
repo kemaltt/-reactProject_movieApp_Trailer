@@ -86,7 +86,7 @@ export default function Main() {
           placeholder="Search a movie..."
           value={searchTerm}
         />
-        <button className type="submit" class={btnClass}>
+        <button className={btnClass} type="submit">
           Search
         </button>
       </form>
