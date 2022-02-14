@@ -8,6 +8,8 @@ import { auth } from "../auth/firebase-config";
 export default function Navbar() {
   const navigate = useNavigate();
   let navTheme = "nav-1";
+  let brandColor;
+
   const { currentUser } = useContext(AuthenticationContext);
 
   const handleLogOut = () => {
@@ -16,8 +18,10 @@ export default function Navbar() {
 
   if (currentUser) {
     navTheme = "nav-2";
+    brandColor = "navbar-brand text-danger";
   } else {
     navTheme = "nav-1";
+    brandColor = "navbar-brand text-white";
   }
 
   return (
@@ -26,7 +30,7 @@ export default function Navbar() {
         className="navbar navbar-expand-lg navbar-light  d-flex d-flex justify-content-between"
         id={navTheme}
       >
-        <a className="navbar-brand text-white" href="/">
+        <a className={brandColor} href="/">
           React Movies
         </a>
 

@@ -39,7 +39,7 @@ export default function Login() {
             Please check your credentials!!!
           </div>
           <h1 className="form-title display-3">Login</h1>
-          <form id="login" onSubmit={(e) => handleSubmit(e)}>
+          <form className="ml-2" id="login" onSubmit={(e) => handleSubmit(e)}>
             <div className="mb-4">
               <label for="email" className="form-label display-4">
                 Email

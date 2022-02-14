@@ -16,6 +16,7 @@ export default function Main() {
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const { currentUser } = useContext(AuthenticationContext);
+  let btnClass;
 
   const getMovies = (API) => {
     setLoading(true);
@@ -36,6 +37,9 @@ export default function Main() {
       });
   };
 
+  currentUser
+    ? (btnClass = "btn btn-outline-secondary font-weight-bold ")
+    : (btnClass = "btn btn-outline-primary ");
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentUser) {
@@ -82,7 +86,7 @@ export default function Main() {
           placeholder="Search a movie..."
           value={searchTerm}
         />
-        <button className type="submit" class="btn btn-outline-primary ">
+        <button className type="submit" class={btnClass}>
           Search
         </button>
       </form>

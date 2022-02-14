@@ -16,6 +16,7 @@ export default function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Main />} />
+            <Route path="/reactProject_movieApp_Trailer/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>

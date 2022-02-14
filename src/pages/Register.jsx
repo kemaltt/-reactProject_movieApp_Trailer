@@ -41,8 +41,12 @@ export default function Register() {
             You have registered successfully!!!
           </div>
           <h1 className="form-title display-3">Register</h1>
-          <form onSubmit={(e) => handleSubmit(e)} id="register">
-            <div className="mb-3">
+          <form
+            className=" ml-3"
+            onSubmit={(e) => handleSubmit(e)}
+            id="register"
+          >
+            <div className="register-info mb-3">
               <label htmlFor="first-name" className="form-label display-4">
                 First Name
               </label>
