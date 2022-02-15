@@ -80,9 +80,9 @@ export default function Overview() {
   }
 
   return (
-    <div className="over d-flex p-2">
+    <div className="over">
       <img src={IMG_API + poster_path} className="" alt="" />
-      <div className="over-info p-4">
+      <div className="over-info ">
         <h2>
           {title} ({release_date} ){" "}
           <Icon
