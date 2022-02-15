@@ -16,7 +16,7 @@ export default function Main() {
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const { currentUser } = useContext(AuthenticationContext);
-  let btnClass;
+  let searchBtn;
 
   const getMovies = (API) => {
     setLoading(true);
@@ -38,8 +38,9 @@ export default function Main() {
   };
 
   currentUser
-    ? (btnClass = "btn btn-outline-secondary font-weight-bold ")
-    : (btnClass = "btn btn-outline-primary ");
+    ? (searchBtn = "btn btn-outline-secondary font-weight-bold ")
+    : (searchBtn = "btn btn-outline-primary ");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentUser) {
@@ -78,19 +79,19 @@ export default function Main() {
 
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit} className="form-inline ">
+      <form onSubmit={handleSubmit} className="search">
         <input
-          onChange={(e) => setSearchTerm(e.target.value)}
-          type="search"
-          className="form-control"
-          placeholder="Search a movie..."
+          className="search-input"
+          type="searc"
+          placeholder=" Search a movie..."
           value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button className={btnClass} type="submit">
+
+        <button className={searchBtn} type="submit" value="Search">
           Search
         </button>
       </form>
-
       {content}
     </React.Fragment>
   );

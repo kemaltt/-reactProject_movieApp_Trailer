@@ -32,12 +32,21 @@
     height: 3.2rem;
 }
 
-.form-inline {
+.search {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #d3d2d2;
     padding: 1rem;
+}
+
+.search-input {
+    height: 40px;
+    width: 400px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
 }
 
 .form-control {
