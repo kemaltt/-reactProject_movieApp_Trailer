@@ -167,10 +167,28 @@ h6 {
     margin: 20px;
 }
 
-iframe {
+.over img {
+    width: 40%;
+    height: 80vh;
+}
+
+.over-info {
+    width: 60%;
+    margin: 2rem;
+}
+
+.over-info span {
+    font-size: 20px;
+    /* font-weight: bold; */
+    margin-left: 5px;
+}
+
+.over iframe {
     display: none;
-    width: 100%;
-    margin-top: 0.6rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
+    width: 80%;
+    min-height: 20rem;
 }
 
 .trailer {
@@ -182,7 +200,6 @@ iframe {
     color: white;
     background-color: rgb(160, 4, 4);
     font-family: "Mitr";
-    font-weight: 600;
 }
 
 .trailer:hover {
@@ -192,4 +209,8 @@ iframe {
     border-radius: 10px;
     font-size: 1.2rem;
     text-decoration: none;
+}
+
+.trailer-info {
+    text-align: center;
 }
